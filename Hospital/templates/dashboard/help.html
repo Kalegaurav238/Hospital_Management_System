@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Breadcrumb -->
+				<!-- Page Title -->
+				<div class="container mt-0">
+					<div class="row breadcrumb-bar">
+						<div class="col-md-6">
+							<h3 class="block-title">Help</h3>
+						</div>
+						<div class="col-md-6">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="/dashboard/horizontal">
+										<span class="ti-home"></span>
+									</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/dashboard/setting">Setting</a>
+								</li>
+								<li class="breadcrumb-item active">
+									<a href="/logout">Logout</a>
+								</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			<!-- /Page Title -->
+
+			<!-- /Breadcrumb -->
+			<!-- Main Content -->
+			<div class="container">
+
+				<div class="row">
+					<!-- Widget Item -->
+					<div class="col-md-12">
+						<div class="widget-area-2 proclinic-box-shadow">
+							<h3 class="widget-title">Help</h3>
+							<form method="post" action="{% url 'add_patient'%}">
+								{% csrf_token %}
+								<h4>Contact Us</h4>
+								<div class="form-row">
+                                    
+                                    <ul>
+										<p>Hi there, my name is <b>Gaurav Vilas Kale</b> and I'm the developer of this project. Here's some information about me:</p>
+                                    
+                                        <li>Name: Gaurav Vilas Kale</li>
+                                        <li>Email: gauravkale238@gmail.com</li>
+                                        <li>Age: I am 22 years old</li>
+                                        <li>Date of Birth: 23/08/2001</li>
+                                        <li>Gender: Male</li>
+                                        <li>Address: At Post Dhaval Phaltan, Satara</li>
+                                        <li>GitHub: <a href="https://github.com/Kalegaurav238">https://github.com/Kalegaurav238</a></li>
+                                        <!-- Add any other information you want to include here -->
+                                    </ul>
+                                </div>
+                                   
+                                    <div class="form-row">
+									<h1>Getting Started</h1>
+                                    
+                                    <ol>
+                                        <p><span style="color: rgb(54, 143, 88);">Welcome to MyProject! Hospital Management System Here's how to get started:</span></p>
+                                        <li>Step 1: Install MyProject</li>
+                                            <p>Install MyProject using the following command:</p>
+                                            <pre>pip install myproject</pre>
+                                        <li>Step 2: Configure MyProject</li>
+                                            <p>Configure MyProject by editing the settings file and database settings in <code>settings.py</code>:</p>
+                                            <pre>DEBUG = True</pre>
+                                            <pre>DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql'}}</pre>
+                                        <li>Step 3: Create a new MyProject project</li>
+                                            <p>Create a new MyProject project using the following command:</p>
+                                            <pre>django-admin startproject myproject</pre>
+                                        <li>Step 4: Start using MyProject!</li>
+                                            <p>You're now ready to start using MyProject. Run the following command to start the development server:</p>
+                                            <pre>python manage.py runserver</pre>
+                                    </ol>
+                                </div>
+									</div>
+                                </div>
+									<script>
+										function showAlert() {
+											alert("Successfully done!");
+										  }
+									</script>
+									<div class="form-group col-md-6 mb-3">
+										<button type="submit" onclick="showAlert()" class="btn btn-primary btn-lg">Submit</button>
+									</div>
+								</div>
+							</form>
+						
+						</div>
+					</div>
+					<!-- /Widget Item -->
+				</div>
+			</div>
+			<!-- /Main Content -->
+{% endblock %}

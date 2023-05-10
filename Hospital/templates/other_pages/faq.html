@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Breadcrumb -->
+				<!-- Page Title -->
+				<div class="container mt-0">
+					<div class="row breadcrumb-bar">
+						<div class="col-md-6">
+							<h3 class="block-title">FAQ</h3>
+						</div>
+						<div class="col-md-6">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="/dashboard/horizontal">
+										<span class="ti-home"></span>
+									</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/other_pages/404">404</a>
+								</li>
+								<li class="breadcrumb-item active">
+									<a href="/logout">Logout</a>
+								</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			<!-- /Page Title -->
+
+			<!-- /Breadcrumb -->
+			<!-- Main Content -->
+			<div class="container">
+
+				<div class="row">
+					<!-- Widget Item -->
+					<div class="col-md-12">
+						<div class="widget-area-2 proclinic-box-shadow">
+							<h3 class="widget-title">FAQ</h3>
+							<form method="post" action="{% url 'setting_page'%}">
+								{% csrf_token %}
+                                
+                                <h4>Frequently Asked Questions</h4>
+                                    {% if questions %}
+                                        <ul>
+                                        {% for question in questions %}
+                                            <li>
+                                            <h5>{{ question.question }}</h5>
+                                            <p>{{ question.answer }}</p>
+                                            </li>
+                                        {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        <p>No questions found.</p>
+                                    {% endif %}
+							</form>
+						
+						</div>
+					</div>
+					<!-- /Widget Item -->
+				</div>
+			</div>
+			<!-- /Main Content -->
+{% endblock %}

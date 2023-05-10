@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+				<!-- Page Title -->
+				<div class="container mt-0">
+					<div class="row breadcrumb-bar">
+						<div class="col-md-6">
+							<h3 class="block-title">Add Room Allotment</h3>
+						</div>
+						<div class="col-md-6">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="/dashboard/horizontal">
+										<span class="ti-home"></span>
+									</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/room/all">All Room</a>
+								</li>
+								<li class="breadcrumb-item active">
+									<a href="/room/avalible">Available Room</a>
+								</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			<!-- /Page Title -->
+
+			<!-- /Breadcrumb -->
+			<!-- Main Content -->
+			<div class="container">
+
+				<div class="row">
+					<!-- Widget Item -->
+					<div class="col-md-12">
+						<div class="widget-area-2 proclinic-box-shadow">
+							<h3 class="widget-title">Add Room Allotment</h3>
+							<form method="post" action="{% url 'add_room_allotment'%}">
+								{% csrf_token %}
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="room-type">Room Type</label>
+										<select class="form-control" id="room-type" name="room_type">
+											<option>ICU</option>
+											<option>General</option>
+											<option>AC Room</option>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="room-number">Room Number</label>
+										<select class="form-control" id="room-number" name="room_no">
+										  {% for room in unbooked_rooms %}
+											<option>{{ room.room_no }}</option>
+										  {% empty %}
+											<option>No available rooms found.</option>
+										  {% endfor %}
+										</select>
+									  </div>
+									
+									<div class="form-group col-md-6">
+										<label for="patient-name">Patient Name</label>
+										<input type="text" placeholder="Patient Name" class="form-control" id="patient-name" name="patient_name">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="allot-date">Allotment Date</label>
+										<input type="date" placeholder="Allotment Date" class="form-control" id="allot-date" name="allotment_date">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="discharge-date">Discharge Date</label>
+										<input type="date" placeholder="Discharge Date" class="form-control" id="discharge-date" name="discharge_date">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="doctor-name">Doctor Name</label>
+										<input type="text" placeholder="Doctor Name" class="form-control" id="doctor-name" name="doctor_name">
+									</div>
+
+									{% comment %} <div class="form-check col-md-12 mb-2">
+										<div class="text-left">
+											<div class="custom-control custom-checkbox">
+												<input class="custom-control-input" type="checkbox" id="ex-check-2" >
+												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>
+											</div>
+										</div>
+									</div> {% endcomment %}
+									<script>
+										function showAlert() {
+											alert("Successfully done!");
+										  }
+									</script>
+									<div class="form-group col-md-6 mb-3">
+										<button type="submit" onclick="showAlert()" class="btn btn-primary btn-lg">Submit</button>
+									</div>
+								</div>
+							</form>
+							<!-- Alerts-->
+							
+							<!-- /Alerts-->
+						</div>
+					</div>
+					<!-- /Widget Item -->
+				</div>
+			</div>
+			<!-- /Main Content -->
+
+{% endblock %}

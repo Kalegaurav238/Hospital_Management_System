@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<!-- Page Title -->
+				<div class="container mt-0">
+					<div class="row breadcrumb-bar">
+						<div class="col-md-6">
+							<h3 class="block-title">Invoice</h3>
+						</div>
+						<div class="col-md-6">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="/dashboard/horizontal">
+										<span class="ti-home"></span>
+									</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/payment/add">Add Payment</a>
+								</li>
+								<li class="breadcrumb-item active">
+									<a href="/payment/all">All Payment</a>
+								</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			<!-- /Breadcrumb -->
+			<!-- Main Content -->
+			
+				<div class="container">
+					<div class="row">
+							<div class="col-md-12">
+								<div class="widget-area-2 proclinic-box-shadow pb-3">
+									<!-- Invoice Head -->
+									<div class="row ">
+										<div class="col-sm-6 mb-5">
+											<img src="{% static 'images/Medical-Logo.png' %}" alt="logo hospital" class="img-thumbnail">
+											<br>
+											
+											{% csrf_token %}
+
+											<br>
+											<span>Agashivnagar,Malkapur</span>
+											<br>
+											<span>Karad, 415539</span>
+											<br>
+											<span class="pr-2">Phone: 02164 241 456</span>
+											<br>
+											<span>Fax: 432 1231 3456</span>
+										</div>
+										
+										<div class="col-sm-6 text-md-right mb-5">
+											<h3>INVOICE</h3>
+											<br>
+											<br>
+											<span>Invoice # [{{Patient_Payment.invoice_id}}]</span>
+											<br>
+											<span>Date: {{Patient_Payment.invoice_date}}</span>
+										</div>
+										
+									</div>
+									<!-- /Invoice Head -->
+									<!-- Invoice Content -->
+									<div class="row">
+										<div class="col-sm-6 mb-5">
+											<h6 class="proclinic-text-color">TO:</h6>
+											<span>{{Patient_Payment.patient_name}}</span>
+											<br>
+											<span>{{patient.address}}</span>
+											<br>
+											<span>{{patient.phone}}</span>
+										</div>
+										<div class="col-sm-6 mb-5">
+											<h6 class="proclinic-text-color">SHIP TO:</h6>
+											<span>{{Patient_Payment.patient_name}}</span>
+											<br>
+											<span>{{patient.address}}</span>
+											<br>
+											<span>{{patient.phone}}</span>
+										</div>
+										<div class="col-sm-12 mb-5">
+											<strong class="proclinic-text-color">COMMENTS OR SPECIAL INSTRUCTIONS:</strong>
+										</div>
+										<div class="col-sm-12">
+											<table class="table table-bordered table-striped table-invioce">
+												<thead>
+													<tr>
+														
+														<th scope="col">Description</th>
+														<th scope="col">Unit Cost</th>
+														<th scope="col">Quantity</th>
+														<th scope="col">Total</th>
+													</tr>
+												</thead>
+												<tbody>
+													
+														<tr>
+															
+															<td>{{Patient_Payment.service_name}}</td>
+															<td>{{Patient_Payment.cost_of_treatment}}</td>
+															<td>1</td>
+															<td>{{Patient_Payment.cost_of_treatment}}</td>
+															
+														</tr>
+												
+												</tbody>
+											</table>
+										</div>
+										<div class="col-sm-4 ml-auto">
+											<table class="table table-bordered table-striped">
+												<tbody>
+													
+													<tr>
+														<td>Subtotal</td>
+														<td>{{Patient_Payment.cost_of_treatment}}</td>
+													</tr>
+													<tr>
+														<td>Tax</td>
+														<td>0.9 %</td>
+													</tr>
+
+													<tr>
+														<td>Discount</td>
+														<td>{{Patient_Payment.discount}} %</td>
+													</tr>
+													<tr>
+														<td>
+															<strong>GRAND TOTAL</strong>
+														</td>
+														<td>
+															<strong>{{total}}</strong>
+														</td>
+													</tr>
+													
+												</tbody>
+											</table>
+										</div>
+
+										<div class="col-sm-12">
+											<div class="border p-4">
+												<strong>Note:</strong>
+												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur id illo incidunt, iste libero quisquam? A aut cumque
+												fuga fugit iusto libero officia optio quasi, quisquam saepe voluptate voluptatibus voluptatum.
+												<br>
+												<br>
+												<strong class="f12">Signature</strong>
+											</div>
+										</div>
+										<script>
+											function printContent() {
+												// Hide export buttons
+												document.querySelectorAll('.export-pagination').forEach(function(exportPagination) {
+													exportPagination.style.display = 'none';
+												});
+
+												// Print the page
+												window.print();
+
+												// Show export buttons
+												document.querySelectorAll('.export-pagination').forEach(function(exportPagination) {
+													exportPagination.style.display = 'block';
+												});
+												}
+											</script>
+										<div class="col-sm-12">
+										<nav aria-label="Page navigation example">
+												<ul class="pagination justify-content-center export-pagination mt-3 mb-0">
+													<li class="page-item">
+														<a class="page-link" onclick="printContent()"><span class="ti-file"></span> Print</a>
+													</li>
+													
+												</ul>
+											</nav>
+										</div>
+
+									</div>
+									<!-- /Invoice Content -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- /Main Content -->
+{% endblock %}

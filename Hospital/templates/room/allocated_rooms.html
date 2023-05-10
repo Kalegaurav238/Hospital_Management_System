@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+				<!-- Page Title -->
+				<div class="container mt-0">
+					<div class="row breadcrumb-bar">
+						<div class="col-md-6">
+							<h3 class="block-title">Room Allocated</h3>
+						</div>
+						<div class="col-md-6">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="/dashboard/horizontal">
+										<span class="ti-home"></span>
+									</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="/room/bookroom">Allocate Room</a>
+								</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			<!-- /Page Title -->
+
+			<!-- /Breadcrumb -->
+			<!-- Main Content -->
+			<div class="container">
+
+				<div class="row">
+					<!-- Widget Item -->
+					<div class="col-md-12">
+						<div class="widget-area-2 proclinic-box-shadow">
+							<h3 class="widget-title">Room Allocated</h3>
+							<form method="post" action="{% url 'allocated_room'%}">
+								{% csrf_token %}
+								<table class="table table-bordered">
+									<thead class="thead">
+										<tr>
+											<th>Room Number</th>
+											<th>Patient Name</th>
+											<th>Check-in Date</th>
+											<th>Check-out Date</th>
+											<th>Status</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for booking in allocated_bookings %}
+										<tr>
+											<td>{{ booking.room_s.roomnumber }}</td>
+											<td>{{ booking.patient_name }}</td>
+											<td>{{ booking.checkin_date }}</td>
+											<td>{{ booking.checkout_date }}</td>
+											<td>{{ booking.status }}</td>
+											<td>
+												<a href="/r_delete/{{booking.room_s.roomnumber}}">
+												<button type="button" class="btn btn-danger mt-0 mb-0"><span class="ti-trash"></span></button></a></td>
+
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+									
+									<script>
+										function showAlert() {
+											alert("Successfully done!");
+										  }
+									</script>
+									
+								</div>
+							</form>
+							<!-- Alerts-->
+							
+							<!-- /Alerts-->
+						</div>
+					</div>
+					<!-- /Widget Item -->
+				</div>
+			</div>
+			<!-- /Main Content -->
+
+{% endblock %}
